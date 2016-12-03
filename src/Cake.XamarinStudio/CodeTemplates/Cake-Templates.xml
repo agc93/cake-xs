@@ -1,0 +1,48 @@
+﻿<CakeCodeTemplates version="1.0">
+	<CodeTemplate version="2.0">
+		<Header>
+			<_Group>Cake</_Group>
+			<Version>1.0</Version>
+			<MimeType>application/cake-script</MimeType>
+			<Shortcut>arg</Shortcut>
+			<_Description>Template for "argument" in a Cake script</_Description>
+			<TemplateType>Expansion</TemplateType>
+		</Header>
+		<Variables>
+			<Variable name="name">
+				<Default>name</Default>
+				<_ToolTip>The name of the Argument</_ToolTip>
+			</Variable>
+			<Variable name="type">
+				<Default>string</Default>
+				<_ToolTip>The type of the Argument</_ToolTip>
+			</Variable>
+		</Variables>
+		<Code><![CDATA[var $name$ = Argument<$type$>("$name$", "$default$");$end$]]>
+		</Code>
+	</CodeTemplate>
+
+	<CodeTemplate version="2.0">
+		<Header>
+			<_Group>Cake</_Group>
+			<Version>1.0</Version>
+			<MimeType>application/cake-script</MimeType>
+			<Shortcut>task</Shortcut>
+			<_Description>Template for a task in a Cake script</_Description>
+			<TemplateType>Expansion</TemplateType>
+		</Header>
+		<Variables>
+			<Variable name="name">
+				<Default>Build</Default>
+				<_ToolTip>Name of the Task</_ToolTip>
+			</Variable>
+		</Variables>
+		<Code><![CDATA[Task("$name$")
+    .Does(() =>
+{
+    $end$
+});
+]]>
+		</Code>
+	</CodeTemplate>
+</CakeCodeTemplates>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0"?>
+<Template>
+	<TemplateConfiguration>
+		<_Name>Cake Addin Unit Test Project</_Name>
+		<_Description>Basic project template, including samples, for creating unit tests for a Cake addin</_Description>
+		<Icon>md-test-cake</Icon>
+		<Category>cake/addins/test</Category>
+		<SupportedParameters>AppName</SupportedParameters>
+		<LanguageName>C#</LanguageName>
+		<Image id="cake-logo" />
+	</TemplateConfiguration>
+	<Actions>
+		<Open filename="AddinTests.cs" />
+	</Actions>
+	<Combine name="${ProjectName}" directory=".">
+		<Project name="${ProjectName}" directory=".">
+			<Packages>
+				<Package id="Cake.Core" version="0.15.2" />
+				<Package id="Cake.Testing" version="0.15.2" />
+				<Package id="xunit" version="2.1.0" />
+			</Packages>
+			<Files>
+				<FileTemplateReference TemplateID="CSharpAssemblyInfo" name="Properties/AssemblyInfo.cs" />
+				<File name="AddinTests.cs" src="AddinTests.cs" />
+				<File name="CakeFixture.cs" src="CakeFixture.cs" />
+				<File name="CakeTool.cs" src="CakeTool.cs" />
+				<File name="CakeToolSettings.cs" src="CakeToolSettings.cs" />
+			</Files>
+		</Project>
+	</Combine>
+</Template>

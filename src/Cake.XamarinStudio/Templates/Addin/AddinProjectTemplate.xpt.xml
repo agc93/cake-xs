@@ -1,0 +1,27 @@
+﻿<?xml version="1.0"?>
+<Template>
+	<TemplateConfiguration>
+		<_Name>Cake Addin</_Name>
+		<_Description>Basic project template for creating a new Cake addin</_Description>
+		<Icon>md-platform-cake</Icon>
+		<Category>cake/addins/code</Category>
+		<SupportedParameters>AppName</SupportedParameters>
+		<LanguageName>C#</LanguageName>
+		<Image id="cake-logo" />
+	</TemplateConfiguration>
+	<Actions>
+		<Open filename="Aliases.cs"/>
+	</Actions>
+	<Combine name="${ProjectName}" directory=".">
+		<Project name="${ProjectName}" directory=".">
+			<Options Target="Library" />
+			<Packages>
+				<Package id="Cake.Core" version="0.17.0" />
+			</Packages>
+			<Files>
+				<File name="Aliases.cs" src="Aliases.cs" />
+				<FileTemplateReference TemplateID="CSharpAssemblyInfo" name="Properties/AssemblyInfo.cs" />
+			</Files>
+		</Project>
+	</Combine>
+</Template>

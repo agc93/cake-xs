@@ -1,0 +1,63 @@
+﻿<CakeCodeTemplates version="1.0">
+	<CodeTemplate version="2.0">
+		<Header>
+			<_Group>Cake</_Group>
+			<Version>1.0</Version>
+			<MimeType>text/x-csharp</MimeType>
+			<Shortcut>aliasp</Shortcut>
+			<_Description>Template for a Cake property alias for use in Cake addins.</_Description>
+			<TemplateType>Expansion</TemplateType>
+		</Header>
+		<Variables>
+			<Variable name="name">
+				<Default>name</Default>
+				<_ToolTip>The name of the alias</_ToolTip>
+			</Variable>
+			<Variable name="category">
+				<Default>Cake</Default>
+				<_ToolTip>The category of the alias</_ToolTip>
+			</Variable>
+			<Variable name="returns">
+				<Default>object</Default>
+				<_ToolTip>The return type of the property</_ToolTip>
+			</Variable>
+		</Variables>
+		<Code><![CDATA[[CakeAliasCategory("$category$")]
+[CakePropertyAlias]
+public static $returns$ $name$(this ICakeContext ctx) {
+  $end$
+}]]>
+		</Code>
+	</CodeTemplate>
+
+	<CodeTemplate version="2.0">
+		<Header>
+			<_Group>Cake</_Group>
+			<Version>1.0</Version>
+			<MimeType>text/x-csharp</MimeType>
+			<Shortcut>alias</Shortcut>
+			<_Description>Template for a Cake method alias for use in Cake addins.</_Description>
+			<TemplateType>Expansion</TemplateType>
+		</Header>
+		<Variables>
+			<Variable name="name">
+				<Default>name</Default>
+				<_ToolTip>The name of the alias</_ToolTip>
+			</Variable>
+			<Variable name="category">
+				<Default>Cake</Default>
+				<_ToolTip>The category of the alias</_ToolTip>
+			</Variable>
+			<Variable name="returns">
+				<Default>void</Default>
+				<_ToolTip>The return type of the alias</_ToolTip>
+			</Variable>
+		</Variables>
+		<Code><![CDATA[[CakeAliasCategory("$category$")]
+[CakeMethodAlias]
+public static $returns$ $name$(this ICakeContext ctx$end$) {
+    
+}]]>
+		</Code>
+	</CodeTemplate>
+</CakeCodeTemplates>

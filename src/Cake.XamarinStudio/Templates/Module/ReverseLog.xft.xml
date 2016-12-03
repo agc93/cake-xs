@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Template>
+	<TemplateConfiguration>
+		<_Name>Reverse Log Sample</_Name>
+		<_Description>A sample implementation of a Cake log</_Description>
+		<Icon>md-platform-cake</Icon>
+		<_Category>Cake</_Category>
+		<DefaultFilename>ReverseLog</DefaultFilename>
+		<LanguageName>C#</LanguageName>
+	</TemplateConfiguration>
+	<TemplateFiles>
+		<File name="${Name}.cs" AddStandardHeader="true" src="ReverseLog.cs" />
+	</TemplateFiles>
+</Template>

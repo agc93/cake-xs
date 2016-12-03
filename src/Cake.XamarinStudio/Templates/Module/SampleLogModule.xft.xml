@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Template>
+	<TemplateConfiguration>
+		<_Name>Sample Log Module</_Name>
+		<Icon>md-platform-cake</Icon>
+		<_Category>Cake</_Category>
+		<_Description>A class template for registering a new log module</_Description>
+		<DefaultFilename>SampleLogModule</DefaultFilename>
+		<LanguageName>C#</LanguageName>
+	</TemplateConfiguration>
+	<TemplateFiles>
+		<File name="${Name}.cs" AddStandardHeader="true" src="SampleLogModule.cs" />
+	</TemplateFiles>
+</Template>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0"?>
+<Template>
+	<TemplateConfiguration>
+		<_Name>Cake Module</_Name>
+		<_Description>Basic project template for creating a new Cake module, including a sample module.</_Description>
+		<Icon>md-platform-cake</Icon>
+		<Category>cake/modules/code</Category>
+		<SupportedParameters>AppName</SupportedParameters>
+		<LanguageName>C#</LanguageName>
+		<Image id="cake-logo" />
+	</TemplateConfiguration>
+	<Actions>
+		<Open filename="SampleLogModule.cs"/>
+	</Actions>
+	<Combine name="${ProjectName}" directory=".">
+		<Options>
+			<StartupProject>Cake.XamarinStudio</StartupProject>
+		</Options>
+		<Project name="${ProjectName}" directory=".">
+			<Options Target="Library" />
+			<Packages>
+				<Package id="Cake.Core" version="0.17.0" />
+			</Packages>
+			<Files>
+				<FileTemplateReference TemplateID="CSharpAssemblyInfo" name="Properties/AssemblyInfo.cs" />
+				<FileTemplateReference TemplateID="cake.templates.module.sample" name="SampleLogModule.cs" />
+				<FileTemplateReference TemplateID="cake.templates.module.log" name="ReverseLog.cs" />
+			</Files>
+		</Project>
+	</Combine>
+</Template>
