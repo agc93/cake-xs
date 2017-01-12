@@ -35,6 +35,9 @@ Setup(ctx =>
 {
 	// Executed BEFORE the first task.
 	Information("Running tasks...");
+	if (FileExists(@"C:\Program Files (x86)\Xamarin Studio\bin\mdtool.exe")) {
+		ctx.Tools.RegisterFile(@"C:\Program Files (x86)\Xamarin Studio\bin\mdtool.exe");
+	}
 });
 
 Teardown(ctx =>
@@ -88,8 +91,8 @@ Task("Package")
 	.Does(() => 
 {
 	Information("Not packaging addin");
-	/* Information("Packaging addin...");
-	MDToolSetup.Pack("./src/Cake.XamarinStudio/bin/" + configuration + "/Cake.XamarinStudio.dll", artifacts); */
+	Information("Packaging addin...");
+	MDToolSetup.Pack("./src/Cake.XamarinStudio/bin/" + configuration + "/Cake.XamarinStudio.dll", artifacts);
 });
 
 Task("Publish-Extension")
