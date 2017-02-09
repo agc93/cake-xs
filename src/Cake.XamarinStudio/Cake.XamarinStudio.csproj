@@ -60,7 +60,6 @@
     <Folder Include="Syntax\" />
     <Folder Include="CodeTemplates\" />
     <Folder Include="Templates\AddinUnitTests\" />
-    <Folder Include="Templates\AddinTestsSample\" />
     <Folder Include="Templates\AddinUnitTestsSample\" />
   </ItemGroup>
   <ItemGroup>
