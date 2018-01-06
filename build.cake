@@ -1,4 +1,4 @@
-#addin nuget:?package=Cake.Xamarin
+#addin "nuget:?package=Cake.Xamarin"
 
 ///////////////////////////////////////////////////////////////////////////////
 // ARGUMENTS
@@ -11,10 +11,9 @@ var configuration = Argument("configuration", "Release");
 // GLOBAL VARIABLES
 ///////////////////////////////////////////////////////////////////////////////
 
-var solutionPath = File("./src/Cake.XamarinStudio.sln");
+var solutionPath = File("./Cake.XamarinStudio.sln");
 var solution = ParseSolution(solutionPath);
-var projects = solution.Projects;
-var projectPaths = projects.Select(p => p.Path.GetDirectory());
+var projectNames = new string[] { "Cake.XamarinStudio" };
 var artifacts = "./dist/";
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -22,8 +21,10 @@ var artifacts = "./dist/";
 ///////////////////////////////////////////////////////////////////////////////
 
 var buildSystem = BuildSystem;
-var IsMainCakeVsRepo = StringComparer.OrdinalIgnoreCase.Equals("cake-build/cake-xs", buildSystem.AppVeyor.Environment.Repository.Name);
-var IsMainCakeVsBranch = StringComparer.OrdinalIgnoreCase.Equals("master", buildSystem.AppVeyor.Environment.Repository.Branch);
+var IsMainCakeVsRepo = StringComparer.OrdinalIgnoreCase.Equals("cake-build/cake-xs",
+	buildSystem.AppVeyor.Environment.Repository.Name);
+var IsMainCakeVsBranch = StringComparer.OrdinalIgnoreCase.Equals("master",
+	buildSystem.AppVeyor.Environment.Repository.Branch);
 var IsBuildTagged = buildSystem.AppVeyor.Environment.Repository.Tag.IsTag
             && !string.IsNullOrWhiteSpace(buildSystem.AppVeyor.Environment.Repository.Tag.Name);
 
@@ -35,8 +36,19 @@ Setup(ctx =>
 {
 	// Executed BEFORE the first task.
 	Information("Running tasks...");
-	if (FileExists(@"C:\Program Files (x86)\Xamarin Studio\bin\mdtool.exe")) {
-		ctx.Tools.RegisterFile(@"C:\Program Files (x86)\Xamarin Studio\bin\mdtool.exe");
+	if(IsRunningOnWindows())
+	{
+		if (FileExists(@"C:\Program Files (x86)\Xamarin Studio\bin\mdtool.exe"))
+		{
+			ctx.Tools.RegisterFile(@"C:\Program Files (x86)\Xamarin Studio\bin\mdtool.exe");
+		}
+	}
+	else
+	{
+		if (FileExists(@"\Applications\Visual Studio.app\Contents\MacOS\vstool"))
+		{
+			ctx.Tools.RegisterFile(@"\Applications\Visual Studio.app\Contents\MacOS\vstool");
+		}
 	}
 });
 
@@ -53,22 +65,17 @@ Teardown(ctx =>
 Task("Clean")
 	.Does(() =>
 {
-	// Clean solution directories.
-	foreach(var path in projectPaths)
-	{
-		Information("Cleaning {0}", path);
-		CleanDirectories(path + "/**/bin/" + configuration);
-		CleanDirectories(path + "/**/obj/" + configuration);
-	}
-	Information("Cleaning common files...");
 	CleanDirectory(artifacts);
+	foreach(var projectName in projectNames)
+    {
+        CleanDirectories(string.Format("./src/{0}/{1}/bin/**", configuration, projectName));
+        CleanDirectories(string.Format("./src/{0}/{1}/obj/**", configuration, projectName));
+    }
 });
 
 Task("Restore")
 	.Does(() =>
 {
-	// Restore all NuGet packages.
-	Information("Restoring solution...");
 	NuGetRestore(solutionPath);
 });
 
@@ -77,22 +84,29 @@ Task("Build")
 	.IsDependentOn("Restore")
 	.Does(() =>
 {
-	Information("Building solution...");
-	MSBuild(solutionPath, settings =>
-		settings
-			.WithProperty("TreatWarningsAsErrors","true")
-			.SetVerbosity(Verbosity.Quiet)
-			.WithTarget("Build")
-			.SetConfiguration(configuration));
+	foreach(var projectName in projectNames)
+	{
+		MSBuild(string.Format("./src/{0}/{0}.csproj", projectName), settings =>
+			settings
+				.WithProperty("TreatWarningsAsErrors","true")
+				.SetVerbosity(Verbosity.Verbose)
+				.WithTarget("Build")
+				.SetConfiguration(configuration));
+	}
 });
 
 Task("Package")
 	.IsDependentOn("Build")
-	.Does(() => 
+	.Does(() =>
 {
-	Information("Not packaging addin");
-	Information("Packaging addin...");
-	MDToolSetup.Pack("./src/Cake.XamarinStudio/bin/" + configuration + "/Cake.XamarinStudio.dll", artifacts);
+	if(IsRunningOnWindows())
+	{
+		MDToolSetup.Pack("./src/Cake.XamarinStudio/bin/" + configuration + "/net461/Cake.XamarinStudio.dll", artifacts);
+	}
+	else
+	{
+		VSToolSetup.Pack("./src/Cake.XamarinStudio/bin/" + configuration + "/net461/Cake.XamarinStudio.dll", artifacts);
+	}
 });
 
 Task("Publish-Extension")
@@ -100,7 +114,7 @@ Task("Publish-Extension")
     .WithCriteria(() => AppVeyor.IsRunningOnAppVeyor)
     .WithCriteria(() => IsMainCakeVsRepo)
 	.WithCriteria(() => FileExists(artifacts + "Cake.XamarinStudio.mpack"))
-    .Does(() => 
+    .Does(() =>
 {
     AppVeyor.UploadArtifact(artifacts + "Cake.XamarinStudio.mpack");
 });

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<AddinProject appVersion="7.0">
+  <Project platforms="Mac Windows Linux">
+    <AddinFile>dist/Cake.XamarinStudio.dll</AddinFile>
+    <BuildFile>Cake.XamarinStudio.sln</BuildFile>
+    <BuildConfiguration>Release</BuildConfiguration>
+  </Project>
+</AddinProject>
