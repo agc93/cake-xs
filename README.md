@@ -1,6 +1,6 @@
-# Cake for Xamarin Studio
+# Cake for MonoDevelop, Xamarin Studio and Visual Studio for Mac.
 
-Adds support for the [Cake](http://cakebuild.net/) build tool in Xamarin Studio 6+. Includes support for syntax highlighting, new item and project templates and commands for bootstrapping important Cake files.
+Adds support for the [Cake](http://cakebuild.net/) build tool in MonoDevelop, Xamarin Studio and Visual Studio for Mac. Includes support for syntax highlighting, new item and project templates and commands for bootstrapping important Cake files.
 
 ## Build scripts
 The Cake script editor automatically triggers when it finds a `.cake` file.
@@ -37,7 +37,7 @@ When authoring addins, you can also use the `alias` and `aliasp` snippets to qui
 ## Contribute
 Check out the [Cake contribution guidelines](http://cakebuild.net/docs/contributing/guidelines) if you want to contribute to this project.
 
-For cloning and building this project yourself, make sure to install the Addin Maker addin for Xamarin Studio which enables some features used by this project.
+For cloning and building this project yourself, make sure to install the Addin Maker addin for Visual Studio Mac or Xamarin Studio which enables some features used by this project.
 
 ## License
 [MIT Licence](LICENSE) 

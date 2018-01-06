@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 
-namespace Cake.XamarinStudio
+namespace Cake.XamarinStudio.Commands
 {
 	internal static class CommandHelpers
 	{

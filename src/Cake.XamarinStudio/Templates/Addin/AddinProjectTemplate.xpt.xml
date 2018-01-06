@@ -16,7 +16,7 @@
 		<Project name="${ProjectName}" directory=".">
 			<Options Target="Library" />
 			<Packages>
-				<Package id="Cake.Core" version="0.17.0" />
+				<Package id="Cake.Core" version="0.24.0" />
 			</Packages>
 			<Files>
 				<File name="Aliases.cs" src="Aliases.cs" />

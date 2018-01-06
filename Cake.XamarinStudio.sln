@@ -1,12 +1,12 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.XamarinStudio", "Cake.XamarinStudio\Cake.XamarinStudio.csproj", "{80A24FDF-5887-430A-B59D-802EFB1F25E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.XamarinStudio", "src\Cake.XamarinStudio\Cake.XamarinStudio.csproj", "{80A24FDF-5887-430A-B59D-802EFB1F25E2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0A1FEE70-7B50-410D-807D-3A1825737EEE}"
 	ProjectSection(SolutionItems) = preProject
-		..\README.md = ..\README.md
-		..\build.cake = ..\build.cake
+		README.md = README.md
+		build.cake = build.cake
 	EndProjectSection
 EndProject
 Global

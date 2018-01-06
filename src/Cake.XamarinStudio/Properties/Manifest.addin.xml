@@ -5,22 +5,32 @@
 			<File pattern="*.cake" />
 		</MimeType>
 	</Extension>
-	<Extension path="/MonoDevelop/SourceEditor2/SyntaxModes">
+    
+    <!-- Old way to declare a hightlight syntax
+    <Extension path="/MonoDevelop/SourceEditor2/SyntaxModes">
 		<Templates resource="Cake.XamarinStudio.Syntax.CakeSyntaxMode.xml" />
-	</Extension>
+	</Extension>-->
+    
+    <Extension path="/MonoDevelop/Ide/Editor/Bundles">       
+        <Bundle resource = "Cake.XamarinStudio.Syntax.cake.sublime-syntax" />
+    </Extension>
+    
 	<Extension path="/MonoDevelop/Core/StockIcons">
 		<StockIcon stockid="md-platform-cake" resource="Cake.XamarinStudio.Resources.cake-icon.png" size="Menu" />
 		<StockIcon stockid="md-test-cake" resource="Cake.XamarinStudio.Resources.cake-test-icon.png" />
 	</Extension>
+    
 	<Extension path="/MonoDevelop/Ide/FileFilters">
 		<FileFilter id="cakeScriptFiles" _label="Cake Scripts" extensions="*.cake" />
 	</Extension>
+    
 	<Extension path="/MonoDevelop/Ide/Commands">
 		<Category id="Cake.XamarinStudio.CakeCommands" _name="Cake">
 			<Command id="Cake.XamarinStudio.CakeCommands.AddConfigFile" _label="Add cake.config File" defaultHandler="Cake.XamarinStudio.Commands.AddConfigFileCommand" />
 			<Command id="Cake.XamarinStudio.CakeCommands.AddBootstrappers" _label="Add Cake bootstrappers" defaultHandler="Cake.XamarinStudio.Commands.AddBootstrappersCommand" />
 		</Category>
 	</Extension>
+    
 	<Extension path="/MonoDevelop/Ide/ContextMenu/ProjectPad/Add">
 		<Condition id="ItemType" value="DotNetProject">
 			<SeparatorItem />
@@ -29,40 +39,50 @@
 			<SeparatorItem />
 		</Condition>
 	</Extension>
+    
 	<Extension path="/MonoDevelop/Ide/MainMenu/Project">
 		<SeparatorItem insertafter="MonoDevelop.PackageManagement.Commands.RestorePackages" />
 		<CommandItem id="Cake.XamarinStudio.CakeCommands.AddConfigFile" />
 		<CommandItem id="Cake.XamarinStudio.CakeCommands.AddBootstrappers" />
 		<SeparatorItem />
 	</Extension>
+    
 	<Extension path="/MonoDevelop/Ide/TemplateImages">
 		<Image id="cake-logo" resource="Cake.XamarinStudio.Resources.preview.png" />
 	</Extension>
+    
 	<Extension path="/MonoDevelop/Ide/FileTemplates">
 		<FileTemplate id="cake.script" resource="ScriptTemplate.xft.xml" />
 	</Extension>
+    
 	<Extension path="/MonoDevelop/Ide/FileTemplates">
 		<FileTemplate id="cake.templates.module.sample" file="Templates/Module/SampleLogModule.xft.xml" />
 		<FileTemplate id="cake.templates.module.log" file="Templates/Module/ReverseLog.xft.xml" />
 	</Extension>
+    
 	<Extension path="/MonoDevelop/Ide/ProjectTemplateCategories">
 		<Category id="cake" name="Cake" icon="md-platform-cake" />
 	</Extension>
-	<Extension path="/MonoDevelop/Ide/ProjectTemplateCategories/cake">
-		<Category id="addins" name="Addins">
-			<Category id="code" name="Addin Projects" />
-			<Category id="test" name="Test Projects" />
-		</Category>
-		<Category id="modules" name="Modules">
-			<Category id="code" name="Module Projects" />
-		</Category>
+    
+	<Extension path="/MonoDevelop/Ide/ProjectTemplateCategories">
+        <Category id="cake" _name="Cake" icon="md-platform-cake" insertbefore="other">
+    		<Category id="addins" name="Addins">
+    			<Category id="code" name="Addin Projects" />
+    			<Category id="test" name="Test Projects" />
+    		</Category>
+    		<Category id="modules" name="Modules">
+    			<Category id="code" name="Module Projects" />
+    		</Category>
+        </Category>
 	</Extension>
+    
 	<Extension path="/MonoDevelop/Ide/ProjectTemplates">
 		<ProjectTemplate id="cake.templates.addin.project" file="Templates/Addin/AddinProjectTemplate.xpt.xml" />
 		<ProjectTemplate id="cake.templates.addin.tests" file="Templates/AddinUnitTests/AddinUnitTests.xpt.xml" />
 		<ProjectTemplate id="cake.templates.addin.sampletests" file="Templates/AddinUnitTestsSample/AddinUnitTestsSample.xpt.xml" />
 		<ProjectTemplate id="cake.templates.module.project" file="Templates/Module/ModuleProjectTemplate.xpt.xml" />
 	</Extension>
+    
 	<Extension path="/MonoDevelop/Ide/CodeTemplates">
 		<CodeTemplate file="CodeTemplates/Cake-Templates.xml" />
 		<CodeTemplate file="CodeTemplates/Addin-Templates.xml" />
